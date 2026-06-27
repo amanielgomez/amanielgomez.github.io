@@ -440,6 +440,103 @@
       .cursor { animation: none; opacity: 1; }
       .badge-dot { animation: none; }
     }
+
+    /* ── HERRAMIENTA ── */
+    .tool-wrapper {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .tool-topbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .tool-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .tool-title-bar {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: 4px;
+    }
+    .tool-body { padding: 1.5rem; }
+    .tool-input-row { display: flex; gap: 0.6rem; margin-bottom: 1.2rem; }
+    .tool-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border-ho);
+      border-radius: 6px;
+      padding: 0.65rem 1rem;
+      font-size: 0.875rem;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .tool-input:focus { border-color: var(--accent); }
+    .tool-input::placeholder { color: var(--muted); }
+    .tool-btn {
+      background: var(--accent);
+      color: #0d1117;
+      border: none;
+      border-radius: 6px;
+      padding: 0.65rem 1.1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .tool-btn:hover { background: var(--accent-ho); }
+    .tool-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .tool-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.2rem; }
+    .tool-chip {
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .tool-chip:hover { border-color: var(--accent); color: var(--accent); }
+    .tool-output {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: var(--muted);
+      min-height: 80px;
+      display: none;
+    }
+    .tool-output.active { display: block; }
+    .tool-output-line { margin-bottom: 0.3rem; }
+    .tool-output-line.header { color: var(--accent); font-weight: 500; margin-bottom: 0.6rem; }
+    .tool-output-line.step { color: var(--text); }
+    .tool-output-line.step::before { content: '-> '; color: var(--green); }
+    .tool-output-line.warn { color: #f0883e; }
+    .tool-output-line.warn::before { content: 'AVISO: '; }
+    .tool-output-line.ok { color: var(--green); }
+    .tool-output-line.ok::before { content: 'OK '; }
+    .tool-output-line.divider { border-top: 1px solid var(--border); margin: 0.6rem 0; }
+    .tool-output-line.escalate { color: #f0883e; margin-top: 0.4rem; }
+    .tool-note {
+      font-size: 0.72rem;
+      color: var(--border-ho);
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 0.75rem;
+      text-align: right;
+    }
   </style>
 </head>
 <body>
@@ -451,6 +548,7 @@
       <li><a href="#experiencia">Experiencia</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#certificaciones">Certificaciones</a></li>
+      <li><a href="#herramienta" style="color:var(--accent);">⚡ Herramienta</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
   </nav>
@@ -609,6 +707,41 @@
     </div>
   </section>
 
+  <!-- HERRAMIENTA -->
+  <section id="herramienta">
+    <div class="section-label">// herramienta</div>
+    <div class="section-title">Diagnóstico de incidencias</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:1.5rem;max-width:580px;">
+      Describe cualquier problema técnico y obtendrás un protocolo de diagnóstico paso a paso, igual que lo haría un técnico de helpdesk N1/N2.
+    </p>
+    <div class="tool-wrapper reveal">
+      <div class="tool-topbar">
+        <div class="tool-dot" style="background:#ff5f57;"></div>
+        <div class="tool-dot" style="background:#febc2e;"></div>
+        <div class="tool-dot" style="background:#28c840;"></div>
+        <span class="tool-title-bar">helpdesk-diagnostico.js — Amaniel Gómez</span>
+      </div>
+      <div class="tool-body">
+        <div class="tool-chips">
+          <span class="tool-chip" onclick="setQuery('El PC no arranca')">PC no arranca</span>
+          <span class="tool-chip" onclick="setQuery('No tengo conexión a internet')">Sin internet</span>
+          <span class="tool-chip" onclick="setQuery('No puedo imprimir')">No imprime</span>
+          <span class="tool-chip" onclick="setQuery('Pantalla azul BSOD')">Pantalla azul</span>
+          <span class="tool-chip" onclick="setQuery('No puedo acceder a mi cuenta de Active Directory')">Problema de AD</span>
+          <span class="tool-chip" onclick="setQuery('El ordenador va muy lento')">PC lento</span>
+          <span class="tool-chip" onclick="setQuery('No recibo correos en Outlook')">Outlook sin correo</span>
+          <span class="tool-chip" onclick="setQuery('Olvidé mi contraseña')">Contraseña olvidada</span>
+        </div>
+        <div class="tool-input-row">
+          <input id="tool-query" class="tool-input" type="text" placeholder="Ej: el PC no arranca, sin internet, pantalla azul..." />
+          <button id="tool-submit" class="tool-btn" onclick="runDiag()">Diagnosticar</button>
+        </div>
+        <div id="tool-output" class="tool-output"></div>
+        <div class="tool-note">diagnóstico basado en protocolos helpdesk N1/N2 reales</div>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACTO -->
   <div class="contact" id="contacto">
     <h2>¿Hablamos?</h2>
@@ -656,6 +789,192 @@
       setTimeout(tick, deleting ? 38 : 68);
     }
     setTimeout(tick, 600);
+
+    // ── Herramienta de diagnóstico ──
+    function setQuery(text) {
+      document.getElementById('tool-query').value = text;
+      document.getElementById('tool-query').focus();
+    }
+
+    document.getElementById('tool-query').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') runDiag();
+    });
+
+    const DIAGS = [
+      {
+        keys: ['no arranca','no enciende','no inicia','no bootea','no se enciende','black screen','pantalla negra sin arrancar'],
+        title: 'PC no arranca — Protocolo N1',
+        steps: [
+          { type: 'step', text: 'Verificar que el cable de alimentación está bien conectado a la regleta y a la fuente.' },
+          { type: 'step', text: 'Comprobar que el botón de encendido del chasis responde (LED de power).' },
+          { type: 'step', text: 'Desconectar periféricos externos (USB, monitores adicionales) y reintentar.' },
+          { type: 'step', text: 'Si hay pitidos POST, anotar el patrón y consultar manual de la placa base.' },
+          { type: 'warn', text: 'Si la fuente de alimentación huele a quemado o hay chispas, apagar desde la regleta.' },
+          { type: 'step', text: 'Retirar y reinsertar los módulos de RAM. Probar con un solo módulo.' },
+          { type: 'ok',   text: 'Si arranca con un solo módulo: módulo de RAM defectuoso. Sustituir.' },
+          { type: 'divider' },
+          { type: 'escalate', text: 'Si persiste: escalar a N2 — posible fallo de fuente, placa base o disco.' }
+        ]
+      },
+      {
+        keys: ['sin internet','no tengo internet','no hay internet','no conecta','sin conexión','sin conexion','no carga','no navega','wifi no funciona','red caída','red caida'],
+        title: 'Sin conexión a internet — Protocolo N1',
+        steps: [
+          { type: 'step', text: 'Comprobar icono de red en la bandeja del sistema — ¿hay aspa roja o triángulo?' },
+          { type: 'step', text: 'Verificar que el cable Ethernet está conectado o que el WiFi está activado.' },
+          { type: 'step', text: 'Reiniciar el router/switch: apagar 30 s, encender, esperar 2 min.' },
+          { type: 'step', text: 'Ejecutar: ipconfig /all — comprobar que hay IP asignada (no 169.254.x.x).' },
+          { type: 'step', text: 'Ejecutar: ping 8.8.8.8 — si responde, el problema es de DNS, no de red.' },
+          { type: 'step', text: 'Si DNS: ejecutar ipconfig /flushdns y cambiar DNS a 8.8.8.8 / 1.1.1.1.' },
+          { type: 'ok',   text: 'Si ping 8.8.8.8 OK y ping google.com falla: problema de DNS resuelto con flush.' },
+          { type: 'warn', text: 'Si no hay IP: comprobar servidor DHCP en el router o AD.' },
+          { type: 'divider' },
+          { type: 'escalate', text: 'Si la incidencia afecta a varios equipos: escalar a N2 — posible caída de infraestructura.' }
+        ]
+      },
+      {
+        keys: ['no imprime','no puedo imprimir','impresora','no imprime','fallo impresora','impresora no responde','cola de impresión','cola de impresion'],
+        title: 'Impresora no funciona — Protocolo N1',
+        steps: [
+          { type: 'step', text: 'Verificar que la impresora está encendida y conectada (USB o red).' },
+          { type: 'step', text: 'Comprobar la cola de impresión: Panel de control > Dispositivos e impresoras.' },
+          { type: 'step', text: 'Si hay trabajos atascados: detener el servicio Print Spooler, borrar C:\Windows\System32\spool\PRINTERS, reiniciar servicio.' },
+          { type: 'step', text: 'Ejecutar: services.msc > Print Spooler > Reiniciar.' },
+          { type: 'step', text: 'Imprimir página de prueba desde las propiedades de la impresora.' },
+          { type: 'warn', text: 'Si es impresora de red: verificar IP de la impresora con ping desde el equipo.' },
+          { type: 'ok',   text: 'Si responde al ping pero no imprime: reinstalar el driver desde el fabricante.' },
+          { type: 'divider' },
+          { type: 'escalate', text: 'Si el driver reinstalado no soluciona: escalar a N2 — revisar GPO de impresoras o servidor de impresión.' }
+        ]
+      },
+      {
+        keys: ['pantalla azul','bsod','blue screen','pantallazo azul','error pantalla','stop error'],
+        title: 'Pantalla azul (BSOD) — Protocolo N1',
+        steps: [
+          { type: 'step', text: 'Anotar el código de error exacto (ej: IRQL_NOT_LESS_OR_EQUAL, MEMORY_MANAGEMENT).' },
+          { type: 'step', text: 'Reiniciar el equipo y observar si el BSOD es recurrente o puntual.' },
+          { type: 'step', text: 'Analizar minidump: Visor de eventos > Registros de Windows > Sistema.' },
+          { type: 'step', text: 'Ejecutar: sfc /scannow en CMD como administrador.' },
+          { type: 'step', text: 'Ejecutar: chkdsk C: /f /r (requiere reinicio) para descartar errores de disco.' },
+          { type: 'warn', text: 'Si el error es MEMORY_MANAGEMENT: ejecutar Windows Memory Diagnostic.' },
+          { type: 'step', text: 'Comprobar si coincide con la instalación reciente de un driver o actualización.' },
+          { type: 'ok',   text: 'Si el BSOD desapareció: documentar solución y monitorizar.' },
+          { type: 'divider' },
+          { type: 'escalate', text: 'Si persiste o hay pérdida de datos: escalar a N2 — posible fallo de hardware.' }
+        ]
+      },
+      {
+        keys: ['active directory','ad','dominio','cuenta bloqueada','no puedo acceder','usuario bloqueado','login falla','no me deja entrar'],
+        title: 'Problema de Active Directory — Protocolo N1',
+        steps: [
+          { type: 'step', text: 'Verificar en AD si la cuenta del usuario está bloqueada o desactivada.' },
+          { type: 'step', text: 'Abrir Active Directory Users and Computers > buscar el usuario.' },
+          { type: 'step', text: 'Si bloqueada: desbloquear desde la pestaña Account > Unlock account.' },
+          { type: 'step', text: 'Restablecer contraseña temporal y forzar cambio en el próximo inicio.' },
+          { type: 'warn', text: 'Si el bloqueo es recurrente: revisar intentos fallidos en el Visor de eventos (Event ID 4740).' },
+          { type: 'step', text: 'Verificar que el equipo está correctamente unido al dominio: Settings > About > Domain.' },
+          { type: 'ok',   text: 'Si el equipo perdió la confianza del dominio: ejecutar netdom resetpwd o volver a unir al dominio.' },
+          { type: 'divider' },
+          { type: 'escalate', text: 'Si el problema afecta a varios usuarios: escalar a N2 — revisar políticas de bloqueo (GPO).' }
+        ]
+      },
+      {
+        keys: ['lento','va lento','tarda mucho','carga lento','lentísimo','lentisimo','rendimiento','ram llena','cpu al 100'],
+        title: 'Equipo lento — Protocolo N1',
+        steps: [
+          { type: 'step', text: 'Abrir Administrador de tareas (Ctrl+Shift+Esc) > pestaña Rendimiento.' },
+          { type: 'step', text: 'Identificar si el cuello de botella es CPU, RAM o disco.' },
+          { type: 'step', text: 'Si CPU al 100%: pestaña Procesos > ordenar por CPU > identificar proceso.' },
+          { type: 'warn', text: 'Proceso desconocido consumiendo CPU: posible malware — ejecutar Windows Defender.' },
+          { type: 'step', text: 'Si RAM llena: cerrar aplicaciones innecesarias o aumentar memoria virtual.' },
+          { type: 'step', text: 'Si disco al 100%: revisar servicio Windows Search o Superfetch — desactivar si no es necesario.' },
+          { type: 'step', text: 'Limpiar archivos temporales: ejecutar cleanmgr o Disk Cleanup.' },
+          { type: 'ok',   text: 'Si mejora tras limpiar: programar mantenimiento periódico.' },
+          { type: 'divider' },
+          { type: 'escalate', text: 'Si el rendimiento sigue degradado: escalar a N2 — evaluar sustitución de HDD por SSD o ampliación de RAM.' }
+        ]
+      },
+      {
+        keys: ['outlook','correo','no recibo correo','no llegan correos','email no funciona','no puedo enviar','bandeja de entrada','microsoft 365','office 365'],
+        title: 'Problema en Outlook / correo — Protocolo N1',
+        steps: [
+          { type: 'step', text: 'Verificar conexión a internet (ver protocolo de red si falla).' },
+          { type: 'step', text: 'Comprobar que Outlook no está en modo Trabajar sin conexión: pestaña Enviar/Recibir.' },
+          { type: 'step', text: 'Revisar la barra de estado de Outlook — debe indicar "Conectado a Microsoft Exchange".' },
+          { type: 'step', text: 'Ejecutar el Asistente para soporte y recuperación de Microsoft (SaRA).' },
+          { type: 'warn', text: 'Si el archivo .OST está dañado: cerrar Outlook, eliminar el .ost y dejar que se reconstruya.' },
+          { type: 'step', text: 'Ruta típica del .ost: C:\Users\Usuario\AppData\Local\Microsoft\Outlook\' },
+          { type: 'step', text: 'Si el problema es en varios usuarios: verificar el estado del servicio en admin.microsoft.com.' },
+          { type: 'ok',   text: 'Si el servicio de Microsoft 365 está degradado: informar al usuario y esperar resolución.' },
+          { type: 'divider' },
+          { type: 'escalate', text: 'Si persiste en un solo usuario: escalar a N2 — revisar buzón en Exchange Admin Center.' }
+        ]
+      },
+      {
+        keys: ['contraseña','password','olvidé','olvide','no recuerdo','contraseña caducada','contraseña expirada','reset password','cambiar contraseña'],
+        title: 'Restablecimiento de contraseña — Protocolo N1',
+        steps: [
+          { type: 'step', text: 'Verificar la identidad del usuario (nombre completo, departamento, email corporativo).' },
+          { type: 'step', text: 'Abrir Active Directory Users and Computers > localizar el usuario.' },
+          { type: 'step', text: 'Clic derecho > Reset Password > introducir contraseña temporal segura.' },
+          { type: 'step', text: 'Marcar "User must change password at next logon".' },
+          { type: 'warn', text: 'No compartir la contraseña temporal por email sin cifrar — usar llamada o canal seguro.' },
+          { type: 'step', text: 'Si la cuenta está bloqueada además de expirada: desbloquear primero antes del reset.' },
+          { type: 'ok',   text: 'Confirmar con el usuario que puede iniciar sesión y cambiar la contraseña.' },
+          { type: 'divider' },
+          { type: 'escalate', text: 'Si el usuario necesita acceso MFA o SSO: escalar a N2 — gestión de identidad avanzada.' }
+        ]
+      }
+    ];
+
+    const DEFAULT_DIAG = {
+      title: 'Incidencia general — Protocolo N1',
+      steps: [
+        { type: 'step', text: 'Recabar información: usuario afectado, equipo, hora de inicio, cambios recientes.' },
+        { type: 'step', text: 'Reproducir el problema: pedir al usuario que repita los pasos que lo provocan.' },
+        { type: 'step', text: 'Comprobar si afecta a otros usuarios o es un problema aislado.' },
+        { type: 'step', text: 'Reiniciar el equipo si no se ha hecho (resuelve el 40% de las incidencias N1).' },
+        { type: 'step', text: 'Revisar el Visor de eventos de Windows en busca de errores en la hora del fallo.' },
+        { type: 'warn', text: 'Documentar todos los pasos realizados en el sistema de tickets (Freshdesk).' },
+        { type: 'divider' },
+        { type: 'escalate', text: 'Si no se resuelve en 15 min o afecta a negocio crítico: escalar a N2 con resumen de pasos realizados.' }
+      ]
+    };
+
+    function runDiag() {
+      const query = document.getElementById('tool-query').value.trim().toLowerCase();
+      if (!query) return;
+
+      const btn = document.getElementById('tool-submit');
+      const out = document.getElementById('tool-output');
+      btn.disabled = true;
+      out.innerHTML = '';
+      out.className = 'tool-output active';
+
+      let match = null;
+      for (const d of DIAGS) {
+        if (d.keys.some(k => query.includes(k))) { match = d; break; }
+      }
+      if (!match) match = DEFAULT_DIAG;
+
+      const lines = [
+        { type: 'header', text: '// ' + match.title },
+        ...match.steps
+      ];
+
+      let i = 0;
+      function renderNext() {
+        if (i >= lines.length) { btn.disabled = false; return; }
+        const l = lines[i++];
+        const div = document.createElement('div');
+        div.className = 'tool-output-line' + (l.type !== 'divider' ? ' ' + l.type : ' divider');
+        if (l.type !== 'divider') div.textContent = l.text || '';
+        out.appendChild(div);
+        out.scrollTop = out.scrollHeight;
+        setTimeout(renderNext, l.type === 'divider' ? 80 : 120);
+      }
+      renderNext();
+    }
 
     // ── Scroll reveal ──
     const observer = new IntersectionObserver(
